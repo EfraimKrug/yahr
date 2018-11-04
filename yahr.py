@@ -27,7 +27,7 @@ def fixDays(sheet):
 
 def swapRows(sheet, r1, r2):
     rHold = ""
-    for c in range(2,9):
+    for c in range(1,9):
         rHold = sheet.cell(row=r1, column=c).value
         sheet.cell(row=r1,column=c).value = sheet.cell(row=r2,column=c).value
         sheet.cell(row=r2,column=c).value = rHold
@@ -91,11 +91,10 @@ def splitByGender(wbook):
         sheetG.cell(count, 1).value = sheet.cell(row=r,column=2).value
         sheetG.cell(count, 2).value = sheet.cell(row=r,column=5).value
 
-        if (str(sheet.cell(row=r,column=7).value) == "0000-00-00"):
-            sheetG.cell(count, 3).value = ""
-        else:
-            sheetG.cell(count, 3).value = str(sheet.cell(row=r,column=7).value)[0:11]
-
+        #if (str(sheet.cell(row=r,column=7).value) == "0000-00-00"):
+        #    sheetG.cell(count, 3).value = ""
+        #else:
+        sheetG.cell(count, 3).value = sheet.cell(row=r,column=24).value
         sheetG.cell(count, 4).value = sheet.cell(row=r,column=8).value
         sheetG.cell(count, 5).value = sheet.cell(row=r,column=25).value
         sheetG.cell(count, 6).value = sheet.cell(row=r,column=28).value
@@ -115,5 +114,5 @@ fixDays(sheet)
 sortSheet(sheet)
 finishSheet(sheet, "Females")
 addBorderDivisions(sheet)
-
+#
 wbook.save('new.xlsx')
